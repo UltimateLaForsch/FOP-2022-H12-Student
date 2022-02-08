@@ -15,5 +15,7 @@ public class Main {
         System.out.println("Hello World!");
         StudentExamEntry see = new StudentExamEntry("HaveSeenItAll", "Dave", 123456);
 
+//        TableGenerator tg = new TableGenerator();
+//        TableWithTitle seeArray = tg.createTable(20, 10);
     }
 }

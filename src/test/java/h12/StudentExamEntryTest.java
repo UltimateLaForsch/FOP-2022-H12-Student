@@ -54,7 +54,7 @@ public class StudentExamEntryTest
 
         String[] grades = new String[]{"1,0", "1,3", "1,7", "2,0", "2,3", "2,7", "3,0", "3,3", "3,7", "4,0", "5,0", "n/a"};
 
-        for (String grade:grades)
+        for (var grade:grades)
         {
             see.setMark(grade);
             assertEquals(grade , see.getMark());
@@ -63,6 +63,7 @@ public class StudentExamEntryTest
         assertThrows(NullPointerException.class, () -> new StudentExamEntry("HaveSeenItAll", "Dave", 123456, null));
         assertThrows(BadStudentMarkException.class, () -> new StudentExamEntry("HaveSeenItAll", "Dave", 123456, "1,9"));
 
+        // :::::::::::::::::::
     }
 
 }
