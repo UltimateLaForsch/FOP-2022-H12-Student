@@ -5,7 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 class TableGenerator
 {
-    protected static StudentExamEntry[] createEntries(int size, long seed)
+    static StudentExamEntry[] createEntries(int size, long seed)
     {
         Random random = new Random();
         random.setSeed(seed);

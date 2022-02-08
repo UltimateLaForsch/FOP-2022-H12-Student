@@ -6,11 +6,11 @@ import java.util.Objects;
 
 public class StudentExamTableIO
 {
-    public void writeStudentExamEntry(Writer writer, StudentExamEntry see) throws IOException
+    public static void writeStudentExamEntry(Writer writer, StudentExamEntry see) throws IOException
     {
         String mark = (Objects.equals(see.getMark(), "n/a")) ? "" : see.getMark();
-        writer.write(see.getFirstName() + ":"+see.getLastName() + ":"+see.getEnrollmentNumber() +
-                ":" + mark);
+        writer.write(see.getFirstName() + ":" + see.getLastName() + ":" + see.getEnrollmentNumber() +
+                ":" + mark + "\n");
     }
 
     public static void writeStudentExamTable(Writer writer, StudentExamEntry[] seeArray) throws IOException
@@ -18,8 +18,7 @@ public class StudentExamTableIO
         writer.write(seeArray.length + "\n");
         for (var see:seeArray)
         {
-            new StudentExamTableIO().writeStudentExamEntry(writer, see);
-            writer.write("\n");
+            writeStudentExamEntry(writer, see);
         }
     }
 
@@ -29,8 +28,7 @@ public class StudentExamTableIO
         writer.write(seeArray.length + "\n");
         for (var see:seeArray)
         {
-            new StudentExamTableIO().writeStudentExamEntry(writer, see);
-            writer.write("\n");
+            writeStudentExamEntry(writer, see);
         }
     }
 

@@ -19,7 +19,7 @@ public class StudentExamEntryTest
     public void testConstructorsWork()
     {
         assertDoesNotThrow( () -> new StudentExamEntry("HaveSeenItAll", "Dave", 123456));
-        assertDoesNotThrow( () -> new StudentExamEntry("NoGood", "Rewan", 555555));
+        assertDoesNotThrow( () -> new StudentExamEntry("NoGood", "Rewan", 555555, "2,3"));
     }
 
     @Test
@@ -42,6 +42,7 @@ public class StudentExamEntryTest
         }
 
         // :::::::::::::::::::
+        // assertThrows with 3 parameters incl message
 
     }
 

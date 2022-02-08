@@ -16,7 +16,7 @@ public class StudentExamEntry
 
     public StudentExamEntry(String lastName, String firstName, int enrollmentNumber, String mark)
     {
-        if(lastName==null | firstName==null)
+        if(lastName==null | firstName==null | mark == null)
         {
             throw new NullPointerException();
         }
@@ -39,10 +39,6 @@ public class StudentExamEntry
         else if (firstName.contains(Character.toString('!')))
         {
             throw new BadCharException('!', firstName.indexOf(Character.toString('!')));
-        }
-        if(mark == null)
-        {
-            throw new NullPointerException();
         }
         else if(!mark.equals("1,0") && !mark.equals("1,3") && !mark.equals("1,7") && !mark.equals("2,0") &&
                 !mark.equals("2,3") && !mark.equals("2,7") && !mark.equals("3,0") && !mark.equals("3,3") &&
@@ -142,6 +138,8 @@ public class StudentExamEntry
     @Override
     public boolean equals(Object obj)
     {
+        // if(obj instanceof StudentExamEntry)
+
         if(obj.getClass() == StudentExamEntry.class && ((StudentExamEntry) obj).lastName .equals(this.lastName))
             return true;
         else
