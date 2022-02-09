@@ -1,8 +1,9 @@
 package h12;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
-class TableGenerator
+class TableGenerator_added
 {
     static StudentExamEntry[] createEntries(int size, long seed)
     {

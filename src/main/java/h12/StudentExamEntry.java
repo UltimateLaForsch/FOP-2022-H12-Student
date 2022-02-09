@@ -18,7 +18,7 @@ public class StudentExamEntry
     {
         if(lastName==null | firstName==null | mark == null)
         {
-            throw new NullPointerException();
+            throw new NullPointerException("NullPointerException");
         }
         else if(enrollmentNumber < 1)
         {
@@ -140,9 +140,14 @@ public class StudentExamEntry
     {
         // if(obj instanceof StudentExamEntry)
 
-        if(obj.getClass() == StudentExamEntry.class && ((StudentExamEntry) obj).lastName .equals(this.lastName))
+        if(obj.getClass() == StudentExamEntry.class &&
+                ((StudentExamEntry) obj).lastName.equals(this.lastName) &&
+                ((StudentExamEntry) obj).firstName.equals(this.firstName) &&
+                ((StudentExamEntry) obj).enrollmentNumber == this.enrollmentNumber &&
+                ((StudentExamEntry) obj).getMark().equals(this.getMark()))
             return true;
         else
             return false;
+
     }
 }
