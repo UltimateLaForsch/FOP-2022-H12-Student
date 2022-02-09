@@ -15,19 +15,24 @@ class StudentExamTableIOTest
     final IOFactory ioFactory = new FileSystemIOFactory();
 
     @Test
-    public void testWriteStudentExamTable() throws IOException
+    public void testWriteStudentExamTable()
     {
-
         assumeTrue(ioFactory.supportsWriter());
-        BufferedWriter bw = ioFactory.createWriter("resourceWriter");
 
-        long seed = 10;
+        try(
+                BufferedWriter bw = ioFactory.createWriter("resourceWriter");
+        )
+        {
+            long seed = 10;
 
-        TableWithTitle table1 = TableGenerator.createTable(50,seed);
-        StudentExamEntry[] seeArray = TableGenerator.createEntries(50, seed);
+            TableWithTitle table1 = TableGenerator.createTable(50, seed);
+            StudentExamEntry[] seeArray = TableGenerator.createEntries(50, seed);
 
-        assertDoesNotThrow( () -> StudentExamTableIO.writeStudentExamTable(bw, seeArray));
-        assertDoesNotThrow( () -> StudentExamTableIO.writeStudentExamTable(bw, table1.getEntries()));
+            assertDoesNotThrow( () -> StudentExamTableIO.writeStudentExamTable(bw, seeArray));
+            assertDoesNotThrow( () -> StudentExamTableIO.writeStudentExamTable(bw, table1.getEntries()));
+        }
+        catch (IOException e) {}
+
 
     }
 

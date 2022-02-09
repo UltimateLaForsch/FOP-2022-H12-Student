@@ -1,8 +1,10 @@
 package h12;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public class StudentExamTableIO
 {
@@ -32,4 +34,35 @@ public class StudentExamTableIO
         }
     }
 
+    public static StudentExamEntry readStudentExamEntry(String row)
+    {
+
+        String[] rowContentArray = row.split(":");
+        String mark = (Objects.equals(rowContentArray[3], "")) ? rowContentArray[3]="n/a" : rowContentArray[3];
+        String lastNAme = rowContentArray[0];
+        String firstName = rowContentArray[1];
+        int enrollNo = Integer.parseInt(rowContentArray[2]);
+        StudentExamEntry studentExamEntry = new StudentExamEntry(lastNAme, firstName, enrollNo, mark);
+        return studentExamEntry;
+
+    }
+
+    public TableWithTitle readStudentExamTable(BufferedReader br) throws IOException
+    {
+        String row;
+        while ((row = br.readLine()) != null)
+        {
+            String[] rowContentArray = row.split(":");
+            String mark = (Objects.equals(rowContentArray[3], "")) ? rowContentArray[3]="n/a" : rowContentArray[3];
+            String lastNAme = rowContentArray[0];
+            String firstName = rowContentArray[1];
+            int enrollNo = Integer.parseInt(rowContentArray[2]);
+            StudentExamEntry studentExamEntry = new StudentExamEntry(lastNAme, firstName, enrollNo, mark);
+        }
+
+
+
+
+
+    }
 }
