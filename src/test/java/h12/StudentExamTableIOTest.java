@@ -2,9 +2,8 @@ package h12;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,7 +19,11 @@ class StudentExamTableIOTest
     {
         assumeTrue(ioFactory.supportsWriter());
 
-        try(BufferedWriter bw = ioFactory.createWriter("resourceWriter"))
+        try(FileWriter fileWriter = new FileWriter("Weihe_team1.txt");
+            FileWriter fileWriter2 = new FileWriter("Weihe_team2.txt");
+            BufferedWriter bw = new BufferedWriter(fileWriter);
+            BufferedWriter bw2 = new BufferedWriter(fileWriter2))
+            //BufferedWriter bw = ioFactory.createWriter(fileWriter))
         {
             long seed = 10;
 
@@ -28,7 +31,7 @@ class StudentExamTableIOTest
             StudentExamEntry[] seeArray = TableGenerator_added.createEntries(50, seed);
 
             assertDoesNotThrow( () -> StudentExamTableIO.writeStudentExamTable(bw, seeArray));
-            assertDoesNotThrow( () -> StudentExamTableIO.writeStudentExamTable(bw, table1.getEntries()));
+            assertDoesNotThrow( () -> StudentExamTableIO.writeStudentExamTable(bw2, table1.getEntries()));
         }
         catch (IOException e) {}
 
@@ -36,21 +39,25 @@ class StudentExamTableIOTest
     }
 
     @Test
-    public void testReadStudentExamTable()
+    public void testReadStudentExamTable() throws FileNotFoundException
     {
         assumeTrue(ioFactory.supportsReader());
 
         FileSystemIOFactory fsf = new FileSystemIOFactory();
-        try(
-                BufferedReader bw1 = fsf.createReader("table1_title.txt");
-                BufferedReader bw2 = fsf.createReader("table1_notitle.txt");
-        )
-        {
 
+        try(FileReader fr1 = new FileReader("Weihe_team1.txt");
+            FileReader fr2 = new FileReader("Weihe_team2.txt");
+            BufferedReader bw1 = new BufferedReader(fr1);
+            BufferedReader bw2 = new BufferedReader(fr2))
+        {
             assertDoesNotThrow( () -> StudentExamTableIO.readStudentExamTable(bw1));
             assertDoesNotThrow( () -> StudentExamTableIO.readStudentExamTable(bw2));
         }
-        catch (IOException e) {}
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
 
 
     }
@@ -63,6 +70,9 @@ class StudentExamTableIOTest
 
         String simStream = "Kantner:Henning:123321:1,3";
         StudentExamEntry seeTest = StudentExamTableIO.readStudentExamEntry(simStream);
+        // seeTest.equals(seeBenchmark);
+
+        assertEquals(StudentExamEntry.class, seeTest.getClass());
         assertEquals(seeBenchmark.getLastName(), seeTest.getLastName());
         assertEquals(seeBenchmark.getFirstName(), seeTest.getFirstName());
         assertEquals(seeBenchmark.getEnrollmentNumber(), seeTest.getEnrollmentNumber());
@@ -70,7 +80,26 @@ class StudentExamTableIOTest
 
     }
 
+    @Test
+    public void testWriteStudentExamTableComplex()
+    {
+        TableGenerator.createTable(50, 50);
+    }
 
+    @Test
+    public void testWriteAndReadStudentExamTable()
+    {
+        Random random = new Random();
+        for (int i = 0; i < 100; i++)
+        {
+            long seed = i;
+
+            TableWithTitle twt = TableGenerator.createTable(200, seed);
+            // BufferedReader br = new BufferedReader();
+
+
+        }
+    }
 
 
 }

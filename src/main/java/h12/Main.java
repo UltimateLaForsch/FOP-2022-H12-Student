@@ -1,6 +1,7 @@
 package h12;
 
 import java.io.*;
+import java.util.Arrays;
 
 /**
  * Main entry point in executing the program.
@@ -28,14 +29,11 @@ public class Main {
         TableWithTitle twt = TableGenerator_added.createTable(20, 10);
         FileSystemIOFactory ff = new FileSystemIOFactory();
 
-        File file = new File("weihe.txt");
-        FileWriter fileReader = new FileWriter(file);
-        ResourceIOFactory rf = new ResourceIOFactory();
-        BufferedWriter bw2 = rf.createWriter("weihe2.txt");
-        BufferedWriter bw = new BufferedWriter(fileReader);
+        File file = new File("weihe3.txt");
 
-        StudentExamTableIO.writeStudentExamTable(bw2, seeArray, "Top of Team Weihe");
-
-
+        try(FileWriter fileWriter = new FileWriter("file"))
+        {
+            StudentExamTableIO.writeStudentExamTable(fileWriter, twt.getEntries(), "Top of Team Weihe");
+        }
     }
 }
