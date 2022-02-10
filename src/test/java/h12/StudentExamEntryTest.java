@@ -32,14 +32,10 @@ public class StudentExamEntryTest
         assertThrows(BadEnrollmentNumberException.class, () -> new StudentExamEntry("HaveSeenItAll", "Dave", -12, "1,3"));
         assertThrows(BadCharException.class, () -> new StudentExamEntry("HaveSeenItAll", "Dave:", 123456));
         assertThrows(BadCharException.class, () -> new StudentExamEntry("HaveSeenItAll:", "Dave", 123456));
-        try
-        {
-            assertThrows(NullPointerException.class, () -> new StudentExamEntry(null, "Dave", 123456, "1,3"));
-        }
-        catch(NullPointerException e)
-        {
-            assertEquals("NullPointerException", e.getMessage());
-        }
+
+        assertEquals("NullPointerException", assertThrows(NullPointerException.class,
+                () -> new StudentExamEntry(null, "Dave", 123456, "1,3")).getMessage());
+
 
         // :::::::::::::::::::
         // assertThrows with 3 parameters incl message

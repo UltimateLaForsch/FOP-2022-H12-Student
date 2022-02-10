@@ -13,8 +13,9 @@ public class StudentExamTableIO
     public static void writeStudentExamEntry(Writer writer, StudentExamEntry see) throws IOException
     {
         String mark = (Objects.equals(see.getMark(), "n/a")) ? "" : see.getMark();
-        writer.write(see.getFirstName() + ":" + see.getLastName() + ":" + see.getEnrollmentNumber() +
+        writer.write(see.getLastName() + ":" + see.getFirstName() + ":" + see.getEnrollmentNumber() +
                 ":" + mark + "\n");
+        writer.flush();
     }
 
     public static void writeStudentExamTable(Writer writer, StudentExamEntry[] seeArray) throws IOException
@@ -24,6 +25,7 @@ public class StudentExamTableIO
         {
             writeStudentExamEntry(writer, see);
         }
+        writer.flush();
     }
 
     public static void writeStudentExamTable(Writer writer, StudentExamEntry[] seeArray, String tableHeader) throws IOException
@@ -34,6 +36,7 @@ public class StudentExamTableIO
         {
             writeStudentExamEntry(writer, see);
         }
+        writer.flush();
     }
 
     public static StudentExamEntry readStudentExamEntry(String row)
@@ -41,17 +44,16 @@ public class StudentExamTableIO
 
         String[] rowContentArray = row.split(":");
         String mark = (Objects.equals(rowContentArray[3], "")) ? rowContentArray[3]="n/a" : rowContentArray[3];
-        String lastNAme = rowContentArray[0];
+        String lastName = rowContentArray[0];
         String firstName = rowContentArray[1];
         int enrollNo = Integer.parseInt(rowContentArray[2]);
-        StudentExamEntry studentExamEntry = new StudentExamEntry(lastNAme, firstName, enrollNo, mark);
+        StudentExamEntry studentExamEntry = new StudentExamEntry(lastName, firstName, enrollNo, mark);
         return studentExamEntry;
 
     }
 
     public static TableWithTitle readStudentExamTable(BufferedReader br) throws IOException
     {
-
         String row = br.readLine();
         String title;
         int length;

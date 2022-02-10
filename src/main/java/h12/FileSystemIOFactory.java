@@ -17,7 +17,6 @@ public class FileSystemIOFactory implements IOFactory
     {
         FileReader fr = new FileReader(resourceName);
         BufferedReader br = new BufferedReader(fr);
-
         return br;
     }
 
