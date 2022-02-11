@@ -125,6 +125,8 @@ public class StudentExamEntry
 
     /**
      * Indicates whether some other object is "equal to" this one.
+     * Override: checks if the object type is the same as well as all object attributes
+     * are the same
      * <p>
      * The {@code equals} method implements an equivalence relation
      * on non-null object references:

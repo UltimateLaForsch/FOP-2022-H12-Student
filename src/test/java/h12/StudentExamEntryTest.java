@@ -16,30 +16,29 @@ public class StudentExamEntryTest
     }
 
     /**
-     * JUnit test of the student exam entry Constructor (if it throws the exceptions with the correct message)
+     * JUnit test of the student exam entry Constructor (if it throws exceptions on wrong inputs and with the correct message)
      */
     @Test
     public void testConstructorsThrow()
     {
 
-        assertThrows(NullPointerException.class, () -> new StudentExamEntry(null, "Dave", 123456, "1,3"));
-        assertThrows(NullPointerException.class, () -> new StudentExamEntry("HaveSeenItAll", null, 123456, "1,3"));
-        assertThrows(NullPointerException.class, () -> new StudentExamEntry("HaveSeenItAll", "Dave", 123456, null));
-        assertThrows(BadEnrollmentNumberException.class, () -> new StudentExamEntry("HaveSeenItAll", "Dave", -12, "1,3"));
-        assertThrows(BadCharException.class, () -> new StudentExamEntry("HaveSeenItAll", "Dave:", 123456));
-        assertThrows(BadCharException.class, () -> new StudentExamEntry("HaveSeenItAll:", "Dave", 123456));
-
         assertEquals("NullPointerException", assertThrows(NullPointerException.class,
                 () -> new StudentExamEntry(null, "Dave", 123456, "1,3")).getMessage());
-
-
-        // :::::::::::::::::::
-        // assertThrows with 3 parameters incl message
+        assertEquals("NullPointerException", assertThrows(NullPointerException.class,
+                () -> new StudentExamEntry("HaveSeenItAll", null, 123456, "1,3")).getMessage());
+        assertEquals("NullPointerException", assertThrows(NullPointerException.class,
+                () -> new StudentExamEntry("HaveSeenItAll", "Dave", 123456, null)).getMessage());
+        assertEquals("Bad enrollment number '-12'", assertThrows(BadEnrollmentNumberException.class,
+                () -> new StudentExamEntry("HaveSeenItAll", "Dave", -12, "1,3")).getMessage());
+        assertEquals("Bad char ':' at position 4" , assertThrows(BadCharException.class,
+                () -> new StudentExamEntry("HaveSeenItAll", "Dave:", 123456)).getMessage());
+        assertEquals("Bad char ':' at position 13", assertThrows(BadCharException.class,
+                () -> new StudentExamEntry("HaveSeenItAll:", "Dave", 123456)).getMessage());
 
     }
 
     /**
-     * JUnit test if the student exam entry Constructor handles the input grades correctly
+     * JUnit test if the student exam entry Constructor handles wrong input grades correctly
      */
     @Test
     public void testMarks()
@@ -55,10 +54,11 @@ public class StudentExamEntryTest
             assertEquals(grade , see.getMark());
         }
 
-        assertThrows(NullPointerException.class, () -> new StudentExamEntry("HaveSeenItAll", "Dave", 123456, null));
-        assertThrows(BadStudentMarkException.class, () -> new StudentExamEntry("HaveSeenItAll", "Dave", 123456, "1,9"));
+        assertEquals("NullPointerException", assertThrows(NullPointerException.class,
+                () -> new StudentExamEntry("HaveSeenItAll", "Dave", 123456, null)).getMessage());
+        assertEquals("Bad student mark '1,9'", assertThrows(BadStudentMarkException.class,
+                () -> new StudentExamEntry("HaveSeenItAll", "Dave", 123456, "1,9")).getMessage());
 
-        // :::::::::::::::::::
     }
 
 }
