@@ -16,7 +16,7 @@ class StudentExamTableIOTest
 
     /**
      * JUnit test of method WriteStudentExamTable
-     * @throws IOException IOException
+     * @throws IOException If an I/O error occurs
      */
     @Test
     public void testWriteStudentExamTable() throws IOException
@@ -28,8 +28,8 @@ class StudentExamTableIOTest
         {
             long seed = 10;
 
-            TableWithTitle table1 = TableGenerator_added.createTable(50, seed);
-            StudentExamEntry[] seeArray = TableGenerator_added.createEntries(50, seed);
+            TableWithTitle table1 = TableGenerator.createTable(50, seed);
+            StudentExamEntry[] seeArray = TableGenerator.createEntries(50, seed);
 
             assertDoesNotThrow( () -> StudentExamTableIO.writeStudentExamTable(bw, seeArray));
             assertDoesNotThrow( () -> StudentExamTableIO.writeStudentExamTable(bw2, table1.getEntries(), "FOP rules"));
@@ -38,7 +38,7 @@ class StudentExamTableIOTest
 
     /**
      * JUnit test of method ReadStudentExamTable
-     * @throws IOException IOException
+     * @throws IOException If an I/O error occurs
      */
     @Test
     public void testReadStudentExamTable() throws IOException
@@ -50,8 +50,8 @@ class StudentExamTableIOTest
         {
             long seed = 10;
 
-            TableWithTitle table1 = TableGenerator_added.createTable(50, seed);
-            StudentExamEntry[] seeArray = TableGenerator_added.createEntries(50, seed);
+            TableWithTitle table1 = TableGenerator.createTable(50, seed);
+            StudentExamEntry[] seeArray = TableGenerator.createEntries(50, seed);
 
             StudentExamTableIO.writeStudentExamTable(bw1, seeArray);
             StudentExamTableIO.writeStudentExamTable(bw2, table1.getEntries(), "FOP rules");
@@ -63,7 +63,6 @@ class StudentExamTableIOTest
             assertDoesNotThrow( () -> StudentExamTableIO.readStudentExamTable(bw3));
             assertDoesNotThrow( () -> StudentExamTableIO.readStudentExamTable(bw4));
         }
-
     }
 
     /**
@@ -90,7 +89,7 @@ class StudentExamTableIOTest
 
     /**
      * JUnit test of method WriteStudentExamTable
-     * @throws IOException IOException
+     * @throws IOException If an I/O error occurs
      */
     @Test
     public void testWriteStudentExamTableComplex() throws IOException
@@ -124,7 +123,7 @@ class StudentExamTableIOTest
 
     /**
      * JUnit combined and large (100 tables) test of methods Write / Read - StudentExamTable
-     * @throws IOException IOException
+     * @throws IOException If an I/O error occurs
      */
     @Test
     public void testWriteAndReadStudentExamTable() throws IOException

@@ -4,6 +4,12 @@ import java.util.Random;
 
 class TableGenerator
 {
+    /**
+     * Creates student exam entry array with random entries
+     * @param size size of the array
+     * @param seed random seed
+     * @return a student exam entry array
+     */
     static StudentExamEntry[] createEntries(int size, long seed)
     {
         Random random = new Random();
@@ -44,6 +50,12 @@ class TableGenerator
         return seeArray;
     }
 
+    /**
+     * Creates a table with title object using a random student exam entry array
+     * @param size size of the table
+     * @param seed random seed
+     * @return a table with title object
+     */
     static TableWithTitle createTable(int size, long seed)
     {
         Random random = new Random();

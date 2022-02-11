@@ -9,11 +9,24 @@ public class StudentExamEntry
     private final int enrollmentNumber;
     private String mark;
 
+    /**
+     * 1st constructor of a StudentExamEntry object
+     * @param lastName last name
+     * @param firstName first name
+     * @param enrollmentNumber enrollmentNumber
+     */
     public StudentExamEntry(String lastName, String firstName, int enrollmentNumber)
     {
         this(lastName, firstName, enrollmentNumber, "n/a");
     }
 
+    /**
+     * 2nd constructor of a StudentExamEntry object
+     * @param lastName last name
+     * @param firstName first name
+     * @param enrollmentNumber enrollmentNumber
+     * @param mark mark
+     */
     public StudentExamEntry(String lastName, String firstName, int enrollmentNumber, String mark)
     {
         if(lastName==null | firstName==null | mark == null)
@@ -53,27 +66,48 @@ public class StudentExamEntry
         this.mark = mark;
     }
 
-
+    /**
+     * Getter method for last name
+     * @return
+     */
     public String getLastName()
     {
         return lastName;
     }
 
+    /**
+     * Getter method for first name
+     * @return
+     */
     public String getFirstName()
     {
         return firstName;
     }
 
+    /**
+     * Getter method for enrollment number
+     * @return
+     */
     public int getEnrollmentNumber()
     {
         return enrollmentNumber;
     }
 
+    /**
+     * Getter method for mark
+     * @return
+     */
     public String getMark()
     {
         return mark;
     }
 
+    /**
+     * Setter method for mark
+     * @param mark mark to be set
+     * @throws NullPointerException if provided mark is null
+     * @throws BadStudentMarkException if mark has not the correct format
+     */
     public void setMark(String mark) throws NullPointerException, BadStudentMarkException
     {
         if(mark == null)

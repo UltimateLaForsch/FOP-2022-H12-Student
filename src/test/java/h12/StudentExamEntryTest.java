@@ -1,19 +1,12 @@
 package h12;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
-
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Stream;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class StudentExamEntryTest
 {
     /**
-     * JUnit test of the ConstructorsWork
+     * JUnit test of the student exam entry Constructor (if it works)
      */
     @Test
     public void testConstructorsWork()
@@ -22,6 +15,9 @@ public class StudentExamEntryTest
         assertDoesNotThrow( () -> new StudentExamEntry("NoGood", "Rewan", 555555, "2,3"));
     }
 
+    /**
+     * JUnit test of the student exam entry Constructor (if it throws the exceptions with the correct message)
+     */
     @Test
     public void testConstructorsThrow()
     {
@@ -42,7 +38,9 @@ public class StudentExamEntryTest
 
     }
 
-
+    /**
+     * JUnit test if the student exam entry Constructor handles the input grades correctly
+     */
     @Test
     public void testMarks()
     {

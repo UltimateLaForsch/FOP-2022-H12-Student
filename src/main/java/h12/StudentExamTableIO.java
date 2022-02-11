@@ -3,13 +3,16 @@ package h12;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Writer;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 public class StudentExamTableIO
 {
+    /**
+     * Writes a studentExamEntry object into a writer object
+     * @param writer the writer
+     * @param see the studentExamEntry
+     * @throws IOException if a problem during the writing occurs
+     */
     public static void writeStudentExamEntry(Writer writer, StudentExamEntry see) throws IOException
     {
         String mark = (Objects.equals(see.getMark(), "n/a")) ? "" : see.getMark();
@@ -18,6 +21,12 @@ public class StudentExamTableIO
         // writer.flush();
     }
 
+    /**
+     * 1st version: Writes a studentExamEntry array into a writer object
+     * @param writer the writer
+     * @param seeArray studentExamEntry array
+     * @throws IOException if a problem during the writing occurs
+     */
     public static void writeStudentExamTable(Writer writer, StudentExamEntry[] seeArray) throws IOException
     {
         writer.write(seeArray.length + "\n");
@@ -28,6 +37,13 @@ public class StudentExamTableIO
         // writer.flush();
     }
 
+    /**
+     * 2nd version including header: Writes a studentExamEntry array into a writer object
+     * @param writer the writer
+     * @param seeArray studentExamEntry array
+     * @param tableHeader the table header
+     * @throws IOException if a problem during the writing occurs
+     */
     public static void writeStudentExamTable(Writer writer, StudentExamEntry[] seeArray, String tableHeader) throws IOException
     {
         writer.write("!" + tableHeader + "\n");
@@ -39,6 +55,11 @@ public class StudentExamTableIO
         // writer.flush();
     }
 
+    /**
+     * Reads a row and delivers a studentExamEntry object
+     * @param row input row
+     * @return a studentExamEntry object
+     */
     public static StudentExamEntry readStudentExamEntry(String row)
     {
 
@@ -52,6 +73,12 @@ public class StudentExamTableIO
 
     }
 
+    /**
+     * Reads a buffered reader and returns a table with title object
+     * @param br the buffered reader
+     * @return table with title object
+     * @throws IOException if a problem during the reading occurs
+     */
     public static TableWithTitle readStudentExamTable(BufferedReader br) throws IOException
     {
         String row = br.readLine();
@@ -78,17 +105,5 @@ public class StudentExamTableIO
         }
         TableWithTitle twt = new TableWithTitle(title, seeArray);
         return twt;
-
-//        List<StudentExamEntry> listOfEntries = new ArrayList<>();
-//
-//        while ((row = br.readLine()) != null)
-//        {
-//            StudentExamEntry studentExamEntry = readStudentExamEntry(row);
-//            listOfEntries.add(studentExamEntry);
-//        }
-//
-//        StudentExamEntry[] seeArray = listOfEntries.toArray(new StudentExamEntry[listOfEntries.size()]);
-//        TableWithTitle twt = new TableWithTitle(title, seeArray);
-//        return twt;
     }
 }
