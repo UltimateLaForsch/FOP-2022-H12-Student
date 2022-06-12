@@ -46,7 +46,7 @@ public class StudentExamEntryTest
         StudentExamEntry see = new StudentExamEntry("EvilTwins", "Revan&Dave", 123123);
         assertEquals("n/a", see.getMark());
 
-        String[] grades = new String[]{"1,1", "1,3", "1,7", "2,0", "2,3", "2,7", "3,0", "3,3", "3,7", "4,0", "5,0", "n/a"};
+        String[] grades = new String[]{"1,0", "1,3", "1,7", "2,0", "2,3", "2,7", "3,0", "3,3", "3,7", "4,0", "5,0", "n/a"};
 
         for (var grade:grades)
         {
